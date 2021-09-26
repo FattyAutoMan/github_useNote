@@ -277,5 +277,13 @@ please contact us at email.support@github.com
 </div>
 ```
 
+# 将远程仓库更新到本地
+
+```
+git pull
+```
+
+
+
 # 协作请求合并
 
