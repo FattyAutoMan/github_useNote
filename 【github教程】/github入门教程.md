@@ -1,3 +1,5 @@
+
+
 # github入门教程
 
 代码托管，本地建仓，实现多台设备协作
@@ -185,7 +187,7 @@ git commit -m "这是一段文本注释，解释提交改动了什么，随便�
 比如回到版本  b5176eace提交后状态：hard是本地仓和 b5176eace内容一样； soft是不改变当前本地仓内容
 
 ```
-git reset  --hard//git reset b5176eace --hard
+git reset  --hard  //git reset b5176eace --hard
 ```
 
 每次commit的时候，git 都会产生一个 commitId，这个commitId，可以通过log命令查看，然后对本地仓库回滚
@@ -209,4 +211,71 @@ git reflog --pretty=oneline
 git push -u origin main
 
 下次上传就可以**省略-u**
+
+
+
+## 分支的新建和合并
+
+```git branch iss53console
+git branch branchname
+git checkout branchname
+git merge branchname
+```
+
+删除本地分支
+
+```console
+git branch -d branchname
+```
+
+## 合并冲突
+
+在两个不同的分支中，对同一个文件的同一个部分进行了不同的修改，Git 就没法干净的合并它们
+
+```git
+git merge iss53
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+```
+
+查看具体状态
+
+```console
+$ git status
+On branch master
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+
+    both modified:      index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+**修改冲突**
+
+ Git 会在有冲突的文件中加入标准的冲突解决标记，这样你可以打开这些包含冲突的文件然后手动解决冲突。 
+
+```html
+<<<<<<< HEAD:index.html
+<div id="footer">contact : email.support@github.com</div>
+=======
+<div id="footer">
+ please contact us at support@github.com
+</div>
+>>>>>>> iss53:index.html
+```
+
+ 例如，你可以通过把这段内容换成下面的样子来解决冲突：
+
+```html
+<div id="footer">
+please contact us at email.support@github.com
+</div>
+```
+
+# 协作请求合并
 
